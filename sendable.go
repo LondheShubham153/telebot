@@ -12,6 +12,14 @@ type Recipient interface {
 	Recipient() string
 }
 
+type RecipientType struct {
+	Channel    string  `sql:"channel" json:"channel"`
+	ChatID     string  `sql:"chat_id" json:"chat_id"`
+}
+
+func (x RecipientType) Recipient() (string, string) {
+	return x.Channel, x.ChatID
+}
 // Sendable is any object that can send itself.
 //
 // This is pretty cool, since it lets bots implement
